@@ -8,6 +8,6 @@ namespace KMStore.API.Repository
     {
         Task<ICollection<Product>> GetProducts();
 
-        Task<Product> GetProduct();
+        Task<Product> GetProduct(int id);
     }
 }
