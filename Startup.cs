@@ -1,4 +1,5 @@
 using KMStore.API.Data;
+using KMStore.API.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,8 @@ namespace KMStore.API
         {
 
             services.AddControllers();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
             services.AddDbContext<KMStoreContext>(options =>
             {
                 options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Database=KMStoreDb;Integrated Security = True");
