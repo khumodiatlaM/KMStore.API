@@ -32,7 +32,7 @@ namespace KMStore.API
             services.AddControllers();
             services.AddDbContext<KMStoreContext>(options =>
             {
-                options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial KMStore=KMStoreDb;Integrated Security = True");
+                options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Database=KMStoreDb;Integrated Security = True");
             });
 
             services.AddSwaggerGen(c =>
