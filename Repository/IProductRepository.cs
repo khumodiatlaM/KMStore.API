@@ -13,5 +13,7 @@ namespace KMStore.API.Repository
         Task AddProduct(Product product);
 
         Task UpdateProduct(int id, Product product);
+
+        Task DeleteProduct(int id);
     }
 }
