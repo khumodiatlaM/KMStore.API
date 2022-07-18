@@ -27,6 +27,12 @@ namespace KMStore.API.Repository
             return await _context.Products.ToListAsync();
         }
 
+        public async Task AddProduct(Product product)
+        {
+            await _context.Products.AddAsync(product);
+            _context.SaveChanges();
+        }
+
         public async Task UpdateProduct(int id, Product product)
         {
             var existingProduct = await _context.Products.FindAsync(id);
