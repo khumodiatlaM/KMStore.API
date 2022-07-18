@@ -33,6 +33,8 @@ namespace KMStore.API
             services.AddControllers();
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            services.AddScoped<IUserRepository, UserRepository>();
+
             services.AddDbContext<KMStoreContext>(options =>
             {
                 options.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Database=KMStoreDb;Integrated Security = True");
