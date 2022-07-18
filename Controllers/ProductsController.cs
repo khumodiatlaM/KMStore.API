@@ -44,7 +44,7 @@ namespace KMStore.API.Controllers
             {
                 await _productRepository.AddProduct(product);
 
-                return StatusCode(StatusCodes.Status201Created);
+                return StatusCode(StatusCodes.Status201Created, "Product Successfully Added");
             }
         }
 
@@ -61,5 +61,20 @@ namespace KMStore.API.Controllers
             }
 
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var product = await _productRepository.GetProduct(id);
+
+            if (product == null) return BadRequest();
+            else
+            {
+                await _productRepository.DeleteProduct(id);
+
+                return Ok("Product Successfully Deleted");
+            }
+        }
+
     }
 }
