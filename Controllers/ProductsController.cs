@@ -1,5 +1,6 @@
 ﻿using KMStore.API.Models;
 using KMStore.API.Repository;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +34,18 @@ namespace KMStore.API.Controllers
             if (product == null) return NotFound("No Product match this Id.");
 
             return Ok(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddProduct(Product product)
+        {
+            if (product == null) return BadRequest();
+            else
+            {
+                await _productRepository.AddProduct(product);
+
+                return StatusCode(StatusCodes.Status201Created);
+            }
         }
 
         [HttpPut("{id}")]
