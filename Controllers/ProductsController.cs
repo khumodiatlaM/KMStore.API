@@ -1,5 +1,7 @@
-﻿using KMStore.API.Repository;
+﻿using KMStore.API.Models;
+using KMStore.API.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace KMStore.API.Controllers
@@ -16,7 +18,7 @@ namespace KMStore.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<ActionResult<Product>> GetProducts()
         {
             var products = await _productRepository.GetProducts();
 
@@ -24,13 +26,27 @@ namespace KMStore.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProduct(int id)
+        public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _productRepository.GetProduct(id);
 
             if (product == null) return NotFound("No Product match this Id.");
 
             return Ok(product);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(int id, Product product)
+        {
+            var existingProduct = await _productRepository.GetProduct(id);
+
+            if (existingProduct == null) return NotFound("No Product match this Id.");
+            else
+            {
+                await _productRepository.UpdateProduct(id, product);
+                return Ok("Product Successfully Updated");
+            }
+
         }
     }
 }
