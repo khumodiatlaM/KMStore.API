@@ -30,7 +30,7 @@ namespace KMStore.API.Repository
         public async Task AddProduct(Product product)
         {
             await _context.Products.AddAsync(product);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateProduct(int id, Product product)
@@ -48,7 +48,7 @@ namespace KMStore.API.Repository
                 existingProduct.QuantityInStock = product.QuantityInStock;
             }
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteProduct(int id)
@@ -58,7 +58,7 @@ namespace KMStore.API.Repository
             if(product != null)
             {
                 _context.Products.Remove(product);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
             }
         }
     }
