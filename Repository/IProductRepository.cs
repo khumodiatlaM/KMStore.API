@@ -9,5 +9,9 @@ namespace KMStore.API.Repository
         Task<ICollection<Product>> GetProducts();
 
         Task<Product> GetProduct(int id);
+
+        Task AddProduct(Product product);
+
+        Task UpdateProduct(int id, Product product);
     }
 }
